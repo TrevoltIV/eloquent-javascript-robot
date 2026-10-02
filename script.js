@@ -98,3 +98,6 @@ const state = new State("Alice's House", [
 ]);
 
 
+function runRobot(state) {
+  // The runRobot function uses the robot function to repeatedly update the state until there are no more parcels.
+}
