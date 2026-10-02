@@ -58,12 +58,22 @@ class State {
     this.parcels = parcels;
   }
 
-  // Move the robot by manipulating the state.
+  // Move the robot and parcels by manipulating the state (and perform validation logic)
   move(destination) {
-    this.place = destination;
-    
-    // Perform logic to determine what the parcels states are.
-    
+    const validDestinations = graph[this.place].edges;
+
+    if (validDestinations.includes(destination)) {
+
+      for (const parcel of this.parcels) {
+
+        if (parcel.place === this.place) {
+          parcel.place = destination;
+        }
+      }
+
+      this.place = destination;
+      this.parcels = this.parcels.filter(parcel => parcel.place !== parcel.address);
+    }
   }
 }
 
